@@ -17,8 +17,8 @@ app.use(cors());
 
 mongoose.set('strictQuery', true);
 mongoose
-    .connect( 'mongodb+srv://admin:consultation@consultation.i47rtmp.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen( PORT || 5000 , () => console.log(`Listening at Port ${PORT}. Server Ok`)))
+    .connect( 'mongodb+srv://admin:chat@chat.f3sr6wb.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => app.listen( process.env.PORT || 5000 , () => console.log(`Listening at Port ${process.env.PORT}. Server Ok`)))
     .catch((err) => console.log(`${err} did not connect`))
 
 //Path 
