@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 mongoose.set('strictQuery', true);
 mongoose
-    .connect( MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect( 'mongodb+srv://admin:consultation@consultation.i47rtmp.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('DB Ok'))
     .catch((err) => console.log(`${err} did not connect`))
 
