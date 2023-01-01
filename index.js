@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from 'cors';
 import dotenv from "dotenv";
+
+// routes
 import AuthRoute from './routes/AuthRoute.js';
 dotenv.config();
 
@@ -13,10 +15,6 @@ mongoose
     .connect( MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('DB Ok'))
     .catch((err) => console.log(`${err} did not connect`))
-
-// routes
-
-
 
 const app = express();
 app.use(express.json());
