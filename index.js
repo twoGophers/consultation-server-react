@@ -21,5 +21,5 @@ mongoose
     .then(() => app.listen(5000 || PORT, () => console.log(`Listening at Port ${PORT}. Server Ok`)))
     .catch((err) => console.log(`${err} did not connect`))
 
-//Path
-app.use('/auth', AuthRoute) ;
+//Path 
+app.use('/auth', AuthRoute);
