@@ -1,26 +1,8 @@
 import express from "express";
-import mongoose from "mongoose";
-import cors from 'cors';
-import dotenv from "dotenv";
-dotenv.config();
-
-// routes
-import AuthRoute from './routes/AuthRoute.js';
-
-const CONNECTION = process.env.MONGODB_CONNECTION;
-const PORT = process.env.PORT;
-
 const app = express();
-app.use(express.json());
-app.use(express.static('avatar'));
-app.use(cors());
-
-//Path 
-app.use('/auth', AuthRoute);
-
-mongoose.set('strictQuery', true);
-mongoose
-    .connect( CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen( PORT || 5000 , () => console.log(`Listening at Port ${PORT}. Server Ok`)))
-    .catch((err) => console.log(`${err} did not connect`))
-
+app.get('/', (req, res) => res.send('Home Page Route'));
+app.get('/about', (req, res) => res.send('About Page Route'));
+app.get('/portfolio', (req, res) => res.send('Portfolio Page Route'));
+app.get('/contact', (req, res) => res.send('Contact Page Route'));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
