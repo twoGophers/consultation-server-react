@@ -15,10 +15,11 @@ app.use(express.json());
 app.use(express.static('avatar'));
 app.use(cors());
 
-app.get('/', (req, res) => res.send('Home Page Route'));
-app.get('/about', (req, res) => res.send('About Page Route'));
-app.get('/portfolio', (req, res) => res.send('Portfolio Page Route'));
-app.get('/contact', (req, res) => res.send('Contact Page Route'));
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
+// mongoose.set('strictQuery', true);
+mongoose
+    .connect( MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => app.listen( PORT || 5000 , () => console.log(`Listening at Port ${PORT}. Server Ok`)))
+    .catch((err) => console.log(`${err} did not connect`))
+
+//Path 
 app.use('/auth', AuthRoute);
