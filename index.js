@@ -19,6 +19,8 @@ mongoose
 const app = express();
 app.use(express.json());
 app.use(express.static('avatar'));
+app.use(express.static('public')); 
+app.use('/images', express.static('images'));
 app.use(cors());
 
 //Path 
