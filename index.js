@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 // routes
 import AuthRoute from './routes/AuthRoute.js';
+import QuestionRoute from './routes/QuestionRoute.js';
 dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -25,10 +26,11 @@ app.use(cors());
 
 //Path 
 app.use('/auth', AuthRoute);
+app.use('/questions', QuestionRoute);
 
 app.listen( PORT || 5000, (err) => {
     if(err) {
         return console.log(err);
     }
     console.log('Server OK');
-  });
+});
