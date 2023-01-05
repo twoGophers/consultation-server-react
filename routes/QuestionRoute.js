@@ -1,9 +1,13 @@
 import express from 'express';
-import { questionsHome } from '../controllers/QuestionsController.js';
+import { 
+    questionsHome, 
+    questionsHomeAll 
+} from '../controllers/QuestionsController.js';
 
 const router = express.Router()
 
-router.post('/home', questionsHome)
+router.post('/home', questionsHome);
+router.get('/home', questionsHomeAll);
 // router.post('/login', loginUser)
 
 export default router;
