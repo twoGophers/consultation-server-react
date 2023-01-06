@@ -30,3 +30,16 @@ export const questionsHomeAll = async (req, res) => {
     })
   };
 };
+
+//Update question home
+export const updateQuestionsHome = async (req, res) => {
+  const quest = req.params.id;
+
+  try {
+    const doc = await QuestionHome.findById(quest);
+      await doc.updateOne({ $set: req.body });
+      res.status(200).json("Update");
+  } catch (error) {
+    console.log(error);
+  }
+};
