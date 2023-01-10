@@ -33,12 +33,24 @@ export const questionsHomeAll = async (req, res) => {
 
 //Update question home
 export const updateQuestionsHome = async (req, res) => {
-  const quest = req.params.id;
+  const id = req.params.id;
 
   try {
-    const doc = await QuestionHome.findById(quest);
+    const doc = await QuestionHome.findById(id);
       await doc.updateOne({ $set: req.body });
       res.status(200).json("Update");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//Delete question home
+export const deleteQuestionsHome = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const doc = await QuestionHome.findById(id);
+      await doc.deleteOne();
+      res.status(200).json("Delete");
   } catch (error) {
     console.log(error);
   }

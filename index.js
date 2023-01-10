@@ -2,6 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from 'cors';
 import dotenv from "dotenv";
+const app = express();
+
+import http from "http";
+import { Server } from "socket.io";
 
 // routes
 import AuthRoute from './routes/AuthRoute.js';
@@ -17,18 +21,40 @@ mongoose
     .then(() => console.log('DB Ok'))
     .catch((err) => console.log(`${err} did not connect`))
 
-const app = express();
 app.use(express.json());
 app.use(express.static('avatar'));
 app.use(express.static('public')); 
-app.use('/images', express.static('images'));
+app.use('/images', express.static('images')); 
 app.use(cors());
+
 
 //Path 
 app.use('/auth', AuthRoute);
 app.use('/questions', QuestionRoute);
 
-app.listen( PORT || 5000, (err) => {
+
+const server = http.createServer(app);
+
+// const io = new Server(server, {
+//     cors: {
+//       origin: "http://localhost:3000",
+//       methods: ["GET", "POST", "PATCH", "DELETE"],
+//     },
+//   });
+  
+//   io.on("connection", (socket) => {
+//     console.log(`User Connected: ${socket.id}`);
+  
+//     socket.on("join_room", (data) => {
+//       socket.join(data);
+//     });
+  
+//     socket.on("send_message", (data) => {
+//       socket.to(data.room).emit("receive_message", data);
+//     });
+//   });
+
+server.listen( PORT || 5000, (err) => {
     if(err) {
         return console.log(err);
     }
