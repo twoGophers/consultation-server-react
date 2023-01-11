@@ -3,9 +3,7 @@ import mongoose from "mongoose";
 import cors from 'cors';
 import dotenv from "dotenv";
 const app = express();
-
-import http from "http";
-import { Server } from "socket.io";
+app.use('/images', express.static('images')); 
 
 // routes
 import AuthRoute from './routes/AuthRoute.js';
@@ -22,8 +20,6 @@ mongoose
     .catch((err) => console.log(`${err} did not connect`))
 
 app.use(express.json());
-app.use(express.static('avatar'));
-app.use(express.static('public')); 
 app.use('/images', express.static('images')); 
 app.use(cors());
 
