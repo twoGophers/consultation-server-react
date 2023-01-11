@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 import cors from 'cors';
 import dotenv from "dotenv";
 const app = express();
-app.use('/images', express.static('images')); 
+
+import http from "http";
+import { Server } from "socket.io";
 
 // routes
 import AuthRoute from './routes/AuthRoute.js';
@@ -20,6 +22,8 @@ mongoose
     .catch((err) => console.log(`${err} did not connect`))
 
 app.use(express.json());
+app.use(express.static('avatar'));
+app.use(express.static('public')); 
 app.use('/images', express.static('images')); 
 app.use(cors());
 
@@ -27,6 +31,10 @@ app.use(cors());
 //Path 
 app.use('/auth', AuthRoute);
 app.use('/questions', QuestionRoute);
+
+//Доступ к картинкам
+app.use(express.static('public'));
+
 
 const server = http.createServer(app);
 
