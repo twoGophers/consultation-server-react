@@ -32,10 +32,6 @@ app.use(cors());
 app.use('/auth', AuthRoute);
 app.use('/questions', QuestionRoute);
 
-//Доступ к картинкам
-app.use(express.static('public'))
-
-
 const server = http.createServer(app);
 
 server.listen( PORT || 5000, (err) => {
